@@ -106,7 +106,9 @@ def _fields_match(fields, existing_fields, logger):
                 else:
                     logger.info("Fields do not match; new type for %s field is %s but existing type is %s",
                                 field_id, fields[index]["type"], existing_fields[existing_index]['type'])
-                    return False
+                    # Update the type in the existing fields to match the new type
+                    existing_fields[existing_index]['type'] = fields[index]['type']
+                    break
         else:
             logger.info("Fields do not match; no existing entry found for %s", field_id)
             return False
